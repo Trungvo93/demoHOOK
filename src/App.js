@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import useList from './useList';
 
 function App() {
+  const [list, item, setItem, addUser, delUser] = useList();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="text" value={item} onChange={e => setItem(e.target.value)}></input>
+      <button onClick={() => addUser()}>Add</button>
+      <button onClick={() => delUser()} >Delete</button>
+      <ul>
+        {list.map((e, index) =>
+          <li key={index}>{e}</li>
+        )}
+      </ul>
+
     </div>
   );
 }
